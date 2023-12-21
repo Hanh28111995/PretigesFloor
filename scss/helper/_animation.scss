@@ -1,0 +1,12 @@
+.introduce-part {
+    @keyframes slideOutDown {
+        0% {
+            transform: translateZ(0);
+        }
+
+        100% {
+            visibility: inherit;
+            transform: translate3d(0, 100%, 0);
+        }
+    }
+}
