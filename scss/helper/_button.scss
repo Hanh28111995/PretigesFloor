@@ -18,6 +18,48 @@
     }
 }
 
+.caroucel-part,
+.mailbox-part {
+    button:hover {
+        background-color: rgba(173, 111, 16, 0.5);
+    }
+}
+
+footer .mail-footer {
+    button:hover {
+        background-color: rgb(150, 111, 16);
+    }
+}
+
+.video-part .video-content .video-left .content-left {
+    button:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+    }
+}
+
+.experty-part .contact-anchor .content-right {
+    button:hover {
+        background-color: #fff;
+        color: $bg-color-1;
+    }
+}
+
+.customer-part .customer-description {
+
+    .prev_arr,
+    .next_arr {
+        &:hover {
+            background-color: $bg-color-1;
+            color: #fff;
+        }
+    }
+}
+
+
+
+
+
 @media (max-width: 1200px) {
     .btn-custom {
         height: 35px;
