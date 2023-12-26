@@ -9,6 +9,17 @@ body {
   font-family: 'Open Sans', sans-serif;
   color: $t-color-light;
 
+  .slick-track {
+    display: flex !important;
+  }
+
+  .slick-slide {
+    height: inherit !important;
+  }
+
+  .customer-part .customer-description .customer-slide .slide-item .content {
+    height: 100%;
+  }
 
   .color-main-color {
     color: $bg-color-1;
@@ -919,7 +930,7 @@ body {
     .customer-description {
       background-color: transparent;
       position: absolute;
-      right: -15px;
+      right: 0px;
       bottom: -100px;
       max-width: calc(100% - 200px);
 
@@ -954,7 +965,7 @@ body {
       }
 
       .customer-slide {
-        padding-top: 15px;
+        padding-top: 25px;
 
         .slide-item {
           padding-left: 15px;
@@ -1077,6 +1088,9 @@ body {
         .brand-item {
           display: flex;
           justify-content: center;
+          margin-bottom: 55px;
+          padding-left: 20px;
+          padding-right: 20px;
         }
       }
     }
@@ -1124,19 +1138,17 @@ body {
           color: #000;
           font-size: 36px;
           font-weight: 400;
-          line-height: 24px;
-          margin-top: 50px;
-          margin-bottom: 50px;
+          line-height: 1.5;
+          margin-top: 5px;
+          margin-bottom: 5px;
         }
       }
     }
 
     .content-left {
-      overflow: hidden;
-
       video {
-        width: 600px;
-        top: 0 !important;
+        top: unset;
+        bottom: 0 !important;
         left: 50%;
         transform: translateX(-50%);
       }
@@ -1149,83 +1161,93 @@ body {
     margin-left: 65px;
     margin-right: 65px;
 
-    .header-title {
-      padding-left: 15px;
-      margin-bottom: 30px;
-      text-align: left;
+    .mailbox-title {
 
-      p {
-        color: $bg-color-1;
-        font-weight: 700;
-
-        &::after {
-          left: 0;
-          transform: unset;
-        }
-      }
-
-      h4 {
-        margin-bottom: 32.4px;
-      }
-
-      p {
-        text-align: left;
-        width: 50%;
-        margin-right: auto;
-        color: $bg-color-1;
-      }
-    }
-
-    .input-area,
-    textarea {
-      margin-bottom: 15px;
-      display: flex;
-      justify-content: space-between;
-
-      input {
-        padding: 9px 12px !important;
-        width: calc(50% - 10px);
-      }
-    }
-
-    textarea {
-      padding: 9px 12px !important;
-    }
-
-    button {
-      background-color: $bg-color-1;
-      font-size: 12px;
-      line-height: 1;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-align: center;
-      padding: 11px 43px;
-      color: #fff;
-      width: fit-content;
-    }
-
-    .mailbox-content {
-      .content-left {
-        padding-left: 5% !important;
-        padding-right: 5% !important;
-      }
-
+      .content-left,
       .content-right {
-        p:first-of-type {
-          font-size: 26px;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      .content-left-content {
+        padding: 0 2rem;
+      }
+
+      .content-right-content {
+        p {
+          &:first-child {
+            font-weight: 700;
+            font-size: 26px;
+            line-height: 36.4px;
+            color: #fff;
+            padding-left: 3rem;
+          }
+
+          &:last-child {
+            text-align: right;
+            font-style: italic;
+            font-size: 16px;
+            line-height: 25.6px;
+            color: $bg-color-1;
+          }
+
+        }
+      }
+
+      .header-title {
+        padding-left: 15px;
+        margin-bottom: 30px;
+        text-align: left;
+
+        p {
+          color: $bg-color-1;
           font-weight: 700;
-          line-height: 36.4px;
-          padding: 0 35px;
-          color: #fff;
+
+          &::after {
+            left: 0;
+            transform: unset;
+          }
         }
 
-        p:last-of-type {
-          font-style: italic;
-          color: $bg-color-1;
-          font-size: 16px;
-          font-weight: 600;
-          text-align: right;
+        h4 {
+          margin-bottom: 32.4px;
         }
+
+        p {
+          text-align: left;
+          width: 100%;
+          margin-right: auto;
+          color: $bg-color-1;
+        }
+
+      }
+
+      .input-area,
+      textarea {
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: space-between;
+
+        input {
+          padding: 9px 12px !important;
+          width: calc(50% - 10px);
+        }
+      }
+
+      textarea {
+        padding: 9px 12px !important;
+      }
+
+      button {
+        background-color: $bg-color-1;
+        font-size: 12px;
+        line-height: 1;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-align: center;
+        padding: 11px 43px;
+        color: #fff;
+        width: fit-content;
       }
     }
   }
@@ -1361,14 +1383,50 @@ body {
 
 }
 
-@media (max-width: 996px) {
+@media (max-width: 1280px) {
+  body .contact-part .content-left video {
+    width: 100%;
+  }
+
+  body .video-part .video-content .video-left .content-left h3 {
+    font-size: 40px;
+  }
+
+  body .video-part .video-content .video-left .content-left button {
+    font-size: 11px;
+  }
+
+  body header .navbar-brand {
+    top: 30px;
+    left: -35px;
+
+  }
+
   body .video-part .video-content .video-right .content-right {
     margin-top: 55px;
     padding: 0;
   }
 
+  body .range-part .range-content .range-list .range-item .range-item-content {
+    padding: 33px 20px;
+  }
+
+  body .contact-part .content-right ul li {
+    font-size: 30px;
+  }
+
+  body .mailbox-part .mailbox-content .content-right p:first-of-type {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.7;
+  }
+
+  body footer .footer-content .logo-footer {
+    margin-bottom: 15px;
+    height: 150px;
+  }
+
   body .team-part .team-list .team-item .text-content {
-    height: 190px;
 
     .description {
       font-size: 13px;
@@ -1390,14 +1448,6 @@ body {
 
   body .customer-part .customer-description {
     max-width: calc(100% - 100px);
-  }
-
-  body .customer-part .customer-description .customer-slide .slide-item {
-    padding-right: unset;
-  }
-
-  body .customer-part .customer-description .customer-slide .slide-item .content {
-    height: 510px;
   }
 
   body .customer-part .customer-description .customer-slide .slide-item .content>p:first-of-type {
@@ -1449,5 +1499,96 @@ body {
   body.customer-part .customer-description .prev_arr:hover,
   body.customer-part .customer-description .next_arr:hover {
     bottom: 3px;
+  }
+}
+
+@media (max-width: 992px) {
+  body .contact-part .contact-content:first-of-type>.content-left {
+    display: none;
+  }
+
+  body .contact-part .contact-content:last-of-type {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  body .contact-part .contact-content>.content-right {
+    .header-title {
+      padding: 0;
+    }
+  }
+
+  body .contact-part .content-left video {
+    position: relative;
+  }
+
+  body footer .footer-content .footer-item-1 p {
+    padding: 0 20px;
+  }
+
+  body .customer-part .customer-description {
+    bottom: -133px;
+  }
+
+  body .customer-part .customer-content .content-right .header-title p {
+    width: 90%;
+  }
+}
+
+@media (max-width: 720px) {
+  body .mailbox-part .mailbox-title {
+    flex-direction: column;
+
+    .content-left,
+    .content-right {
+      width: 100%;
+    }
+    .content-left{
+      margin-bottom: 95px;
+    }
+  }
+
+  body .contact-part {
+    margin-bottom: 2px;
+
+    .content-left {
+      overflow: unset;
+    }
+  }
+
+  body .experty-part .reason-part .reason-content .content-left .content-left-img img {
+    width: 80%;
+  }
+
+  body .experty-part .reason-part .reason-content .content-left {
+    margin-bottom: 35px;
+  }
+
+  body .customer-part .customer-description .customer-slide .slide-item .content {
+    padding: 20px;
+  }
+
+  body .customer-part .customer-content .content-right .header-title p {
+    width: 70%;
+  }
+
+  body .customer-part .customer-description {
+    bottom: -96px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  body .contact-part .content-right ul {
+    padding-left: 0;
+
+    li {
+      margin-bottom: 0px;
+      margin-top: 0px;
+      font-size: 20px;
+    }
+  }
+
+  body .contact-part .header-title {
+    padding-left: 0;
   }
 }

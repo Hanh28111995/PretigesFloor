@@ -157,6 +157,17 @@ body {
   font-family: "Open Sans", sans-serif;
   color: #fff;
 }
+body .slick-track {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+body .slick-slide {
+  height: inherit !important;
+}
+body .customer-part .customer-description .customer-slide .slide-item .content {
+  height: 100%;
+}
 body .color-main-color {
   color: rgb(173, 111, 16);
 }
@@ -980,7 +991,7 @@ body .customer-part .customer-content .content-right .header-title p {
 body .customer-part .customer-description {
   background-color: transparent;
   position: absolute;
-  right: -15px;
+  right: 0px;
   bottom: -100px;
   max-width: calc(100% - 200px);
 }
@@ -1013,7 +1024,7 @@ body .customer-part .customer-description .customer-slide {
   background-color: #fff;
 }
 body .customer-part .customer-description .customer-slide {
-  padding-top: 15px;
+  padding-top: 25px;
 }
 body .customer-part .customer-description .customer-slide .slide-item {
   padding-left: 15px;
@@ -1131,6 +1142,9 @@ body .brand-part .brand-content .brand-list .brand-item {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  margin-bottom: 55px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 body .contact-part {
   margin-left: 65px;
@@ -1169,16 +1183,13 @@ body .contact-part .content-right ul li {
   color: #000;
   font-size: 36px;
   font-weight: 400;
-  line-height: 24px;
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
-body .contact-part .content-left {
-  overflow: hidden;
+  line-height: 1.5;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 body .contact-part .content-left video {
-  width: 600px;
-  top: 0 !important;
+  top: unset;
+  bottom: 0 !important;
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
@@ -1189,31 +1200,53 @@ body .mailbox-part {
   margin-left: 65px;
   margin-right: 65px;
 }
-body .mailbox-part .header-title {
+body .mailbox-part .mailbox-title .content-left,
+body .mailbox-part .mailbox-title .content-right {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+body .mailbox-part .mailbox-title .content-left-content {
+  padding: 0 2rem;
+}
+body .mailbox-part .mailbox-title .content-right-content p:first-child {
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 36.4px;
+  color: #fff;
+  padding-left: 3rem;
+}
+body .mailbox-part .mailbox-title .content-right-content p:last-child {
+  text-align: right;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 25.6px;
+  color: rgb(173, 111, 16);
+}
+body .mailbox-part .mailbox-title .header-title {
   padding-left: 15px;
   margin-bottom: 30px;
   text-align: left;
 }
-body .mailbox-part .header-title p {
+body .mailbox-part .mailbox-title .header-title p {
   color: rgb(173, 111, 16);
   font-weight: 700;
 }
-body .mailbox-part .header-title p::after {
+body .mailbox-part .mailbox-title .header-title p::after {
   left: 0;
   -webkit-transform: unset;
           transform: unset;
 }
-body .mailbox-part .header-title h4 {
+body .mailbox-part .mailbox-title .header-title h4 {
   margin-bottom: 32.4px;
 }
-body .mailbox-part .header-title p {
+body .mailbox-part .mailbox-title .header-title p {
   text-align: left;
-  width: 50%;
+  width: 100%;
   margin-right: auto;
   color: rgb(173, 111, 16);
 }
-body .mailbox-part .input-area,
-body .mailbox-part textarea {
+body .mailbox-part .mailbox-title .input-area,
+body .mailbox-part .mailbox-title textarea {
   margin-bottom: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1222,15 +1255,15 @@ body .mailbox-part textarea {
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
-body .mailbox-part .input-area input,
-body .mailbox-part textarea input {
+body .mailbox-part .mailbox-title .input-area input,
+body .mailbox-part .mailbox-title textarea input {
   padding: 9px 12px !important;
   width: calc(50% - 10px);
 }
-body .mailbox-part textarea {
+body .mailbox-part .mailbox-title textarea {
   padding: 9px 12px !important;
 }
-body .mailbox-part button {
+body .mailbox-part .mailbox-title button {
   background-color: rgb(173, 111, 16);
   font-size: 12px;
   line-height: 1;
@@ -1242,24 +1275,6 @@ body .mailbox-part button {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-}
-body .mailbox-part .mailbox-content .content-left {
-  padding-left: 5% !important;
-  padding-right: 5% !important;
-}
-body .mailbox-part .mailbox-content .content-right p:first-of-type {
-  font-size: 26px;
-  font-weight: 700;
-  line-height: 36.4px;
-  padding: 0 35px;
-  color: #fff;
-}
-body .mailbox-part .mailbox-content .content-right p:last-of-type {
-  font-style: italic;
-  color: rgb(173, 111, 16);
-  font-size: 16px;
-  font-weight: 600;
-  text-align: right;
 }
 body footer {
   margin: 54px 0 0 0;
@@ -1378,13 +1393,38 @@ body footer .mail-footer button {
   padding: 9px;
 }
 
-@media (max-width: 996px) {
+@media (max-width: 1280px) {
+  body .contact-part .content-left video {
+    width: 100%;
+  }
+  body .video-part .video-content .video-left .content-left h3 {
+    font-size: 40px;
+  }
+  body .video-part .video-content .video-left .content-left button {
+    font-size: 11px;
+  }
+  body header .navbar-brand {
+    top: 30px;
+    left: -35px;
+  }
   body .video-part .video-content .video-right .content-right {
     margin-top: 55px;
     padding: 0;
   }
-  body .team-part .team-list .team-item .text-content {
-    height: 190px;
+  body .range-part .range-content .range-list .range-item .range-item-content {
+    padding: 33px 20px;
+  }
+  body .contact-part .content-right ul li {
+    font-size: 30px;
+  }
+  body .mailbox-part .mailbox-content .content-right p:first-of-type {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.7;
+  }
+  body footer .footer-content .logo-footer {
+    margin-bottom: 15px;
+    height: 150px;
   }
   body .team-part .team-list .team-item .text-content .description {
     font-size: 13px;
@@ -1401,12 +1441,6 @@ body footer .mail-footer button {
   }
   body .customer-part .customer-description {
     max-width: calc(100% - 100px);
-  }
-  body .customer-part .customer-description .customer-slide .slide-item {
-    padding-right: unset;
-  }
-  body .customer-part .customer-description .customer-slide .slide-item .content {
-    height: 510px;
   }
   body .customer-part .customer-description .customer-slide .slide-item .content > p:first-of-type {
     font-size: 120px;
@@ -1448,5 +1482,87 @@ body footer .mail-footer button {
   body.customer-part .customer-description .prev_arr:hover,
   body.customer-part .customer-description .next_arr:hover {
     bottom: 3px;
+  }
+}
+@media (max-width: 992px) {
+  body .contact-part .contact-content:first-of-type > .content-left {
+    display: none;
+  }
+  body .contact-part .contact-content:last-of-type {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+  body .contact-part .contact-content > .content-right .header-title {
+    padding: 0;
+  }
+  body .contact-part .content-left video {
+    position: relative;
+  }
+  body footer .footer-content .footer-item-1 p {
+    padding: 0 20px;
+  }
+  body .customer-part .customer-description {
+    bottom: -133px;
+  }
+  body .customer-part .customer-content .content-right .header-title p {
+    width: 90%;
+  }
+}
+@media (max-width: 720px) {
+  body .mailbox-part .mailbox-title {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  body .mailbox-part .mailbox-title .content-left,
+  body .mailbox-part .mailbox-title .content-right {
+    width: 100%;
+  }
+  body .mailbox-part .mailbox-title .content-left {
+    margin-bottom: 95px;
+  }
+  body .contact-part {
+    margin-bottom: 2px;
+  }
+  body .contact-part .content-left {
+    overflow: unset;
+  }
+  body .experty-part .reason-part .reason-content .content-left .content-left-img img {
+    width: 80%;
+  }
+  body .experty-part .reason-part .reason-content .content-left {
+    margin-bottom: 35px;
+  }
+  body .customer-part .customer-description .customer-slide .slide-item .content {
+    padding: 20px;
+  }
+  body .customer-part .customer-content .content-right .header-title p {
+    width: 70%;
+  }
+  body .customer-part .customer-description {
+    bottom: -96px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+  }
+  body .contact-part .content-right ul {
+    padding-left: 0;
+  }
+  body .contact-part .content-right ul li {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    font-size: 20px;
+  }
+  body .contact-part .header-title {
+    padding-left: 0;
   }
 }
