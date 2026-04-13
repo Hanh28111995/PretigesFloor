@@ -1,0 +1,75 @@
+@import "swiper/css";
+@import "swiper/css/autoplay";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+/* 1. Set kích thước REM gốc: 1rem = 10px (tùy chọn) */
+html {
+  font-size: 62.5%; /* Tương đương 10px để dễ tính toán: 1.6rem = 16px */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  overflow-x: hidden;
+  font-size: 1.6rem; /* Trả lại kích thước chữ mặc định là 16px cho body */
+}
+
+/* 2. Định nghĩa Keyframes */
+@keyframes infinite-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(50%);
+  }
+}
+
+@keyframes zoomInOut {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.15);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* 3. Chuyển thành các class animation để dùng trực tiếp */
+  .animate-infinite-scroll {
+    display: flex ;
+    width: max-content;
+    animation: infinite-scroll 20s linear infinite;    
+  }
+
+  .animate-zoom-in-out {
+    animation: zoomInOut 0.5s ease-in-out infinite alternate;
+  }
+
+  /* Bonus: Hiệu ứng làm mờ 2 đầu cho Carousel như đã nói ở trên */
+  .mask-inline-fade {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+  }
+}
