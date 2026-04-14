@@ -1,4 +1,5 @@
 'use client';
+
 import { useState, useEffect, useMemo } from "react";
 import IntroSection from "@/components/introSection/introSection";
 import ProductList from "@/components/productList/ProductList";
@@ -10,10 +11,10 @@ export interface SelectedFilters {
 }
 
 const FILTERS_CONFIG = {
-  "Rug Types": "product_type",
+  "Carpet Types": "product_type",
 };
 
-export default function RugsPage() {
+export default function CarpetPage() {
   const [hideFilter, setHideFilter] = useState(false);
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -21,16 +22,27 @@ export default function RugsPage() {
     return Object.keys(FILTERS_CONFIG).reduce((acc, key) => ({ ...acc, [key]: [] }), {});
   });
 
+  // 1. Fetch dữ liệu và xử lý chuẩn hóa ban đầu
   useEffect(() => {
     const fetchData = async () => {
       try {
         const urls = [
-          "https://www.prestigefloor.com.au/collections/rugs/products.json",
+          "https://www.prestigefloor.com.au/collections/carpets/products.json",
+          "https://www.prestigefloor.com.au/collections/wool-carpets/products.json"
         ];
         const requests = urls.map(url => fetch(url).then(res => res.json()));
         const responses = await Promise.all(requests);
-        const combinedProducts = responses.reduce((acc, current) => acc.concat(current.products || []), []);
-        console.log(combinedProducts)
+        
+        const combinedProducts = responses.reduce((acc: any[], current: any) => {
+          return acc.concat(
+            (current.products || []).map((p: any) => ({
+              ...p,
+              product_type: p.product_type?.includes("Wool")
+                ? "Wool Carpet"
+                : p.product_type
+            }))
+          );
+        }, []);
         setProducts(combinedProducts);
       } catch (err) {
         console.error("Fetch error:", err);
@@ -41,29 +53,35 @@ export default function RugsPage() {
     fetchData();
   }, []);
 
- const filteredProducts = useMemo(() => {
-     return products.filter(p => {
-       return Object.entries(FILTERS_CONFIG).every(([displayTitle, dataPath]) => {
-         const activeSelections = selectedFilters[displayTitle];
-         if (!activeSelections || activeSelections.length === 0) return true;
- 
-         const productValue = p[dataPath];
-         if (Array.isArray(productValue)) {
-           return productValue.some(val => activeSelections.includes(val));
-         }
-         return activeSelections.includes(productValue);
-       });
-     });
-   }, [products, selectedFilters]);
- 
+  // 2. Logic Lọc sản phẩm động
+  const filteredProducts = useMemo(() => {
+    return products.filter(p => {
+      return Object.entries(FILTERS_CONFIG).every(([displayTitle, dataPath]) => {
+        const activeSelections = selectedFilters[displayTitle];
+        if (!activeSelections || activeSelections.length === 0) return true;
+
+        const productValue = p[dataPath];
+        if (Array.isArray(productValue)) {
+          return productValue.some(val => activeSelections.includes(val));
+        }
+        return activeSelections.includes(productValue);
+      });
+    });
+  }, [products, selectedFilters]);
+
   if (loading) return <div className="p-20 text-center font-bold tracking-widest uppercase">Loading Collection...</div>;
 
   return (
     <div className="pb-20">
-      <IntroSection bgImageUrl="https://www.prestigefloor.com.au/cdn/shop/products/dream_5169a_ivory-beige-6_550x.jpg?v=1669814987" title="Rugs" />
+      <IntroSection
+        bgImageUrl="https://www.prestigefloor.com.au/cdn/shop/files/hero_1_090c1261-ba88-49fb-b8c2-7a1a171cc284.jpg?v=1715186691"
+        title="Carpet Flooring"
+      />
+
       <Container>
-        <button
-          className="flex items-center pt-10 group outline-none"
+        {/* Nút bấm Toggle Filter */}
+        <button 
+          className="flex items-center pt-10 group" 
           onClick={() => setHideFilter(!hideFilter)}
         >
           <div className="p-2 border border-gray-200 rounded-md group-hover:bg-gray-50 transition-colors">
@@ -77,33 +95,36 @@ export default function RugsPage() {
         </button>
 
         <div className="py-10">
+          {/* Wrapper chính: Điều khiển Gap khi ẩn/hiện */}
           <div className={`flex flex-col lg:flex-row transition-all duration-500 ease-in-out ${hideFilter ? 'gap-0' : 'gap-10'}`}>
-
-            {/* SIDEBAR COLUMN */}
-            <div
-              className={`transition-all duration-500 ease-in-out shrink-0 ${hideFilter ? 'w-0 opacity-0 pointer-events-none' : 'w-full lg:w-[25%] opacity-100'
-                }`}
+            
+            {/* CỘT FILTER: Lớp bọc điều khiển chiều rộng (Width) */}
+            <div 
+              className={`transition-all duration-500 ease-in-out shrink-0 ${
+                hideFilter ? 'w-0 opacity-0 pointer-events-none' : 'w-full lg:w-[30%] opacity-100'
+              }`}
             >
+              {/* LỚP STICKY: Nằm bên trong để trượt theo màn hình */}
               <div className="sticky top-[130px] h-fit">
-                {!hideFilter && (
+                {/* Ẩn hẳn nội dung khi width = 0 để tránh bị lỗi hiển thị đè lên ProductList */}
+                <div className={hideFilter ? "hidden" : "block"}>
                   <SidebarFilter
                     allProducts={products}
                     selectedFilters={selectedFilters}
                     onFilterChange={setSelectedFilters}
-                    filtersConfig={FILTERS_CONFIG as any}
+                    filtersConfig={FILTERS_CONFIG}
                   />
-                )}
+                </div>
               </div>
             </div>
 
-            {/* PRODUCT LIST COLUMN */}
-            <div className={`transition-all duration-500 ease-in-out flex-grow ${hideFilter ? 'w-full' : 'w-full lg:w-[75%]'}`}>
-              <ProductList products={filteredProducts} />
-              {filteredProducts.length === 0 && (
-                <div className="text-center py-20 text-gray-500 italic">
-                  No products found matching your selected filters.
-                </div>
-              )}
+            {/* CỘT PRODUCT LIST: Tự động giãn ra chiếm 100% */}
+            <div className={`transition-all duration-500 ease-in-out flex-grow ${
+              hideFilter ? 'w-full' : 'w-full lg:w-[70%]'
+            }`}>
+              <ProductList
+                products={filteredProducts}
+              />
             </div>
           </div>
         </div>

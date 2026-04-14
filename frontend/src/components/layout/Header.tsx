@@ -41,7 +41,7 @@ export function Header() {
           
           <Link href="/prestige-oak" className="text-[16px] md:text-[20px] font-light uppercase px-[10px] py-[5px] mx-[3px] rounded-[25px] hover:font-bold transition-all flex items-center gap-1">Prestige Oak</Link>
           
-          <Link href="/carpet" className="text-[16px] md:text-[20px] font-light uppercase px-[10px] py-[5px] mx-[3px] rounded-[25px] hover:font-bold transition-all flex items-center gap-1">Carpet</Link>
+          <Link href="/carpets" className="text-[16px] md:text-[20px] font-light uppercase px-[10px] py-[5px] mx-[3px] rounded-[25px] hover:font-bold transition-all flex items-center gap-1">Carpet</Link>
           
           <Link href="/trade-services" className="text-[16px] md:text-[20px] font-light uppercase px-[10px] py-[5px] mx-[3px] rounded-[25px] hover:font-bold transition-all flex items-center gap-1">Trade Services</Link>
           
@@ -75,7 +75,7 @@ export function Header() {
               <div className="flex flex-col gap-4 text-[20px] font-light uppercase p-2 text-white">
                 <Link onClick={() => setMobileMenuOpen(false)} href="/flooring" className="border-b border-white/20 pb-3 hover:font-bold">Flooring</Link>
                 <Link onClick={() => setMobileMenuOpen(false)} href="/prestige-oak" className="border-b border-white/20 pb-3 hover:font-bold">Prestige Oak</Link>
-                <Link onClick={() => setMobileMenuOpen(false)} href="/carpet" className="border-b border-white/20 pb-3 hover:font-bold">Carpet</Link>
+                <Link onClick={() => setMobileMenuOpen(false)} href="/carpets" className="border-b border-white/20 pb-3 hover:font-bold">Carpet</Link>
                 <Link onClick={() => setMobileMenuOpen(false)} href="/trade-services" className="border-b border-white/20 pb-3 hover:font-bold">Trade Services</Link>
                 <Link onClick={() => setMobileMenuOpen(false)} href="/rugs" className="border-b border-white/20 pb-3 hover:font-bold">Rugs</Link>
                 <Link onClick={() => setMobileMenuOpen(false)} href="/quote" className="bg-[#cc8b65] text-white font-bold px-5 py-3 mt-4 rounded text-center w-full hover:bg-[#b07554]">
