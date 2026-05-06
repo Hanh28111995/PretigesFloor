@@ -12,7 +12,7 @@ interface ProductCardProps {
         images: { src: string }[];
         variants: { price: string }[];
         product_type: string;
-    };
+    };    
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {

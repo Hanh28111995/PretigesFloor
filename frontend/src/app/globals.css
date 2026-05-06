@@ -1,5 +1,7 @@
 @import "swiper/css";
 @import "swiper/css/autoplay";
+@import "swiper/css/navigation";
+@import "swiper/css/thumbs";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -47,15 +49,32 @@ body {
 }
 
 @layer utilities {
+  .thumb-swiper .swiper-slide {
+    width: 80px !important;
+  }
+
+  /* Tùy chỉnh nút Next/Prev mặc định của Swiper */
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: black !important;
+    transform: scale(0.5);
+    transition: all 0.3s ease;
+  }
+
+  /* Ẩn nút mặc định khi chưa hover nếu ông dùng class group của Tailwind */
+  .group:not(:hover) .swiper-button-next,
+  .group:not(:hover) .swiper-button-prev {
+    opacity: 0;
+  }
   .text-balance {
     text-wrap: balance;
   }
 
   /* 3. Chuyển thành các class animation để dùng trực tiếp */
   .animate-infinite-scroll {
-    display: flex ;
+    display: flex;
     width: max-content;
-    animation: infinite-scroll 20s linear infinite;    
+    animation: infinite-scroll 20s linear infinite;
   }
 
   .animate-zoom-in-out {
