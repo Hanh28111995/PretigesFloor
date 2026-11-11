@@ -13,7 +13,7 @@ export default function Home() {
       <Service />
       <Product />
       <About />
-      <Social />
+      {/* <Social /> */}
     </main>
   );
 }

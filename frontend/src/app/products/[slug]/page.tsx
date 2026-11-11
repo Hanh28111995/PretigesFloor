@@ -2,7 +2,6 @@
 
 import ProductDetailClient from "@/components/productDetail/productDetailClient";
 import { Container } from "@/components/ui/Container";
-import { div } from "framer-motion/client";
 
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {

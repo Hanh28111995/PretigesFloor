@@ -2,23 +2,8 @@
 
 import React, { useState, useMemo } from 'react';
 import { Filter, ChevronDown, ChevronUp } from 'lucide-react';
-
-// --- INTERFACES ---
-export interface SelectedFilters {
-  [key: string]: string[];
-}
-
-interface FilterOption {
-  label: string;
-  match: (val: any) => boolean;
-}
-
-interface FilterDetail {
-  dataPath: string;
-  options: FilterOption[];
-}
-
-export type FiltersConfigType = Record<string, string | FilterDetail>;
+import { getValueByPath, normalizeString } from '@/helper';
+import type { FilterDetail, FiltersConfigType, SelectedFilters } from '../collection/types';
 
 interface SidebarFilterProps {
   allProducts: any[];
@@ -38,20 +23,6 @@ export default function SidebarFilter({
   const [openSections, setOpenSections] = useState<Record<string, boolean>>(() =>
     Object.keys(filtersConfig).reduce((acc, key) => ({ ...acc, [key]: true }), {})
   );
-
-  // Helper: Lấy dữ liệu từ path
-  const getValueByPath = (obj: any, path: string) => {
-    return path.split('.').reduce((acc, part) => acc && acc[part], obj);
-  };
-
-  // Helper: Chuẩn hóa text
-  const normalize = (str: string) =>
-    String(str)
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/\s+/g, "")
-      .trim();
 
   const filterSections = useMemo(() => {
     if (!allProducts.length) return [];
@@ -89,7 +60,7 @@ export default function SidebarFilter({
             });
           } else {
             // Logic khớp chính xác (Brand, Type)
-            const key = normalize(val);
+            const key = normalizeString(val);
             if (countsMap[key]) {
               countsMap[key].count += 1;
             } else {
