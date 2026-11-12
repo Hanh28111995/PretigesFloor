@@ -8,11 +8,8 @@ export const getCollectionDetails = async (collectionHandle: string) => {
   try {
     const response = await fetch(`${BASE_URL}/collections/${collectionHandle}.json`, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      // Thêm cache control của Next.js (tuỳ chọn)
-      // next: { revalidate: 3600 } 
+      // Không set Content-Type cho GET: header lạ sẽ kích hoạt preflight OPTIONS
+      // và bị Shopify chặn CORS.
     });
 
     if (!response.ok) {
@@ -34,9 +31,8 @@ export const getProductsInCollection = async (collectionHandle: string) => {
   try {
     const response = await fetch(`${BASE_URL}/collections/${collectionHandle}/products.json`, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      // Không set Content-Type cho GET: header lạ sẽ kích hoạt preflight OPTIONS
+      // và bị Shopify chặn CORS.
     });
 
     if (!response.ok) {
@@ -65,9 +61,8 @@ export const getProductsInCollectionPaginated = async (collectionHandle: string,
 
     const response = await fetch(url.toString(), {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      // Không set Content-Type cho GET: header lạ sẽ kích hoạt preflight OPTIONS
+      // và bị Shopify chặn CORS.
     });
 
     if (!response.ok) {
